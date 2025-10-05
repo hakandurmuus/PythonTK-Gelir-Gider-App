@@ -1,9 +1,8 @@
 import mysql.connector
-from messagebox import showinfo,showerror
 import datetime
 import os
 from dotenv import load_dotenv
-# from dateutil import parser
+from tkinter import messagebox
 
 class DbManager:
     def database(self):
@@ -23,11 +22,11 @@ class DbManager:
         self.cursor.execute(sql,values)
         user = self.cursor.fetchone()
         if user:
-            showinfo("BAŞARILI","Giriş Başarılı")
+            messagebox.showinfo("BAŞARILI","Giriş Başarılı")
             self.connection.close()
             return True
         else:
-            showerror("HATA","Kullanıcı adı veya şifre hatalı!")
+            messagebox.showerror("HATA","Kullanıcı adı veya şifre hatalı!")
             self.connection.close()
 
     def register(self,username,password):
@@ -43,10 +42,10 @@ class DbManager:
             self.cursor.execute(sql2,values)
             self.connection.commit()
             self.connection.close()
-            showinfo("BAŞARILI","Kayıt başarılı bir şekilde gerçekleşti")
+            messagebox.showinfo("BAŞARILI","Kayıt başarılı bir şekilde gerçekleşti")
             return True
         else:
-            showinfo("HATA","Kullanıcı adı kullanılıyor. Farklı bir kullanıcı adı deneyin.")
+            messagebox.showinfo("HATA","Kullanıcı adı kullanılıyor. Farklı bir kullanıcı adı deneyin.")
     
     def finduserid(self,username,password):
         self.database()

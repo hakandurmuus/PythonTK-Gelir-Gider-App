@@ -1,7 +1,7 @@
 from tkinter import *
 import ttkbootstrap as tb
 from dbmanager import DbManager
-from messagebox import showinfo,showerror
+from tkinter import messagebox
 
 
 
@@ -66,9 +66,9 @@ class App:
 
     def register(self):
         if len(self.username_entry.get()) == 0 or len(self.password_entry.get()) == 0:
-            showerror("HATA","Kullanıcı adı ve şifre boş olamaz")
+            messagebox.showerror("HATA","Kullanıcı adı ve şifre boş olamaz")
         elif len(self.username_entry.get()) < 5:
-            showerror("HATA","Kullanıcı adı en az 5 karakter olmalı")
+            messagebox.showerror("HATA","Kullanıcı adı en az 5 karakter olmalı")
         else:
             self.db.register(self.username_entry.get(),self.password_entry.get())
             self.username_entry.delete(0,END)
